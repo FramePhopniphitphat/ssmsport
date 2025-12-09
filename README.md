@@ -1,7 +1,7 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>Smart Facility Management</title>
+  <title>SSM Smart Facility Management</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     *{box-sizing:border-box;font-family:"Sarabun",system-ui,-apple-system,sans-serif;}
