@@ -229,7 +229,7 @@ function renderStart(){
         </div>
 
         <div class="mt-6 text-sm text-slate-500">
-          <strong>คำแนะนำ:</strong> เลือกตัวเลือกที่คุณคิดว่าเหมาะสมที่สุด — ผลจะเป็นการประเมินเชิงคุณภาพ (ไม่แสดงคะแนนตัวเลข)
+          <strong>คำแนะนำ:</strong> เลือกตัวเลือกที่คุณคิดว่าเหมาะสมที่สุด — ผลจะเป็นการประเมินเชิงตัวเลขและเชิงคุณภาพ
         </div>
       </div>
 
@@ -375,14 +375,16 @@ function renderResults(){
 
   container.innerHTML = `
     <div class="space-y-4">
-      <div class="flex items-center justify-between">
+      <div class="flex items-start justify-between">
         <div>
           <h2 class="text-2xl font-bold text-slate-800">ผลการทดสอบ</h2>
           <p class="text-sm text-slate-500">ผู้เล่น: <strong>${escapeHtml(state.name||'ไม่ระบุ')}</strong></p>
         </div>
+
         <div class="text-right">
-          <div class="text-lg font-extrabold" style="background:linear-gradient(90deg,#f97316,#ef4444); -webkit-background-clip:text; color:transparent;">${title}</div>
-          <div class="text-xs text-slate-500 mt-1">ประเมินเชิงคุณภาพ (ไม่แสดงคะแนนตัวเลข)</div>
+          <div class="text-4xl font-extrabold" style="background:linear-gradient(90deg,#f97316,#ef4444); -webkit-background-clip:text; color:transparent;">${total}/${max}</div>
+          <div class="text-sm text-slate-500 mt-1">${pct}%</div>
+          <div class="text-xs text-slate-400 mt-1">${title}</div>
         </div>
       </div>
 
@@ -431,7 +433,7 @@ function renderResults(){
   document.getElementById('btn-retry').onclick = ()=>{ state.answers=[]; state.current=1; prepareQuestions(); renderQuestion(1); }
   document.getElementById('btn-home').onclick = ()=>{ state.current=0; renderStart(); }
   document.getElementById('btn-share').onclick = ()=>{
-    const summary = `ThinkBeforeYouRisk | ผู้เล่น:${state.name||'ไม่ระบุ'} | ผล: ${title}`;
+    const summary = `ThinkBeforeYouRisk | ผู้เล่น:${state.name||'ไม่ระบุ'} | คะแนน: ${total}/${max} (${pct}%) — ผล: ${title}`;
     copyTextToClipboard(summary);
     alert('คัดลอกข้อความสรุปแล้ว: ' + summary);
   }
